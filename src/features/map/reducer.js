@@ -1,12 +1,12 @@
 
 
 const initialState = {
-    position: [0, 0],
+    tiles: []
 };
 
-const playerReducer = (state=initialState, action) => {
+const mapReducer = (state=initialState, action) => {
     switch(action.type) {
-        case 'MOVE_PLAYER':
+        case 'ADD_TILES':
             return {
                 ...action.payload
             };
@@ -15,4 +15,4 @@ const playerReducer = (state=initialState, action) => {
     }
 };
 
-export default playerReducer;
+export default mapReducer;
