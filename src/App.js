@@ -1,12 +1,18 @@
 import React from 'react';
-import World from "./features/world";
+import './index.css'
+import Player from "./components/player";
+
 
 function App() {
-  return (
-    <div>
-      <World/>
-    </div>
-  )
+
+    return (
+        <div>
+            <div className="title">DUNGEON BOY</div>
+            <Player skin="m1"/>
+            {/*<World className="worldMap"/>*/}
+
+        </div>
+    )
 }
 
 export default App;

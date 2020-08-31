@@ -16,6 +16,26 @@ export default function handleMovement(player) {
         }
     }
 
+    function getSpriteLocation(direction, walkIndex) {
+        switch (direction) {
+            case 'SOUTH':
+                return `${(SPRITE_SIZE-8)*walkIndex}px ${(SPRITE_SIZE-8)*0}px`;
+            case 'NORTH':
+                return `${(SPRITE_SIZE-8)*walkIndex}px ${(SPRITE_SIZE-8)*1}px`;
+            case 'EAST':
+                return `${(SPRITE_SIZE-8)*walkIndex}px ${(SPRITE_SIZE-8)*2}px`;
+            case 'WEST':
+                return `${(SPRITE_SIZE-8)*walkIndex}px ${(SPRITE_SIZE-8)*3}px`;
+
+        }
+    }
+
+    function getWalkIndex() {
+       const walkIndex =  store.getState().player.walkIndex;
+       return walkIndex > 3 ? 0 : walkIndex + 1
+
+    }
+
     function observeBoundaries(oldPos, newPos) {
         return (newPos[0] >= 0 && newPos[0] <= MAP_WIDTH - SPRITE_SIZE) &&
             (newPos[1] >= 0 && newPos[1] <= MAP_HEIGHT - SPRITE_SIZE)
@@ -27,15 +47,19 @@ export default function handleMovement(player) {
         const y = newPos[1] / SPRITE_SIZE;
         const x = newPos[0] / SPRITE_SIZE;
         const nextTile = tiles[y][x];
-
         return nextTile < 5
     }
-    function dispatchMove(newPos) {
 
+
+    function dispatchMove(direction, newPos) {
+        const walkIndex = getWalkIndex();
         store.dispatch({
             type: 'MOVE_PLAYER',
             payload:{
-                position: newPos
+                position: newPos,
+                direction,
+                walkIndex,
+                spriteLocation: getSpriteLocation(direction, walkIndex),
             }
         })
 
@@ -46,7 +70,7 @@ export default function handleMovement(player) {
         const newPos = getNewPosition(oldPos, direction);
 
         if(observeBoundaries(oldPos, newPos) && observerImpassable(oldPos, newPos))
-            dispatchMove(newPos)
+            dispatchMove(direction, newPos)
     }
 
     function handleKeyDown(e){
