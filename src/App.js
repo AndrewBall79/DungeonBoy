@@ -10,7 +10,6 @@ function App() {
             <div className="title">DUNGEON BOY</div>
             <Player skin="m1"/>
             {/*<World className="worldMap"/>*/}
-
         </div>
     )
 }

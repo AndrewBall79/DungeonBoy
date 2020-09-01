@@ -1,5 +1,5 @@
 import React from "react";
-import Player from "../player";
+import Player from "../../components/player";
 import Map from "../map";
 
 import {tiles} from '../../data/maps/1/index'
