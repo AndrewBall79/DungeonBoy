@@ -2,15 +2,15 @@ import React from "react";
 import Actor from "../actor";
 import useKeyPress from "../../hooks/use-key-press";
 import useWalk from "../../hooks/use-walk";
+import {connect} from 'react-redux'
+import handleMovement from "./movement";
 
-export default function Player({skin}) {
+function Player({skin}) {
     const {dir, step, walk, position} = useWalk(3);
     const data = {
         h: 32,
         w: 32,
     };
-
-
     useKeyPress((e) => {
         walk(e.key.replace("Arrow", "").toLowerCase());
         e.preventDefault();
@@ -25,3 +25,10 @@ export default function Player({skin}) {
         />
     )
 }
+function mapStateToProps(state) {
+    return{
+        ...state.player,
+    }
+}
+
+export default connect(mapStateToProps)(handleMovement(Player));

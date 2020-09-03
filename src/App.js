@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css'
-import Player from "./components/player";
+import World from "./features/world";
 
 
 function App() {
@@ -8,8 +8,9 @@ function App() {
     return (
         <div>
             <div className="title">DUNGEON BOY</div>
-            <Player skin="m1"/>
-            {/*<World className="worldMap"/>*/}
+            <div className="zone-container">
+            <World className="worldMap"/>
+            </div>
         </div>
     )
 }
