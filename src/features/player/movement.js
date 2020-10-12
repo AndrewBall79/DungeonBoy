@@ -26,7 +26,6 @@ export default function handleMovement(player) {
                 return `${(SPRITE_SIZE-8)*walkIndex}px ${(SPRITE_SIZE-8)*2}px`;
             case 'WEST':
                 return `${(SPRITE_SIZE-8)*walkIndex}px ${(SPRITE_SIZE-8)*3}px`;
-
         }
     }
 
